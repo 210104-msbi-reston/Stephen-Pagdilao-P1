@@ -1,0 +1,1690 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/23/2021 5:48:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STEPH-PAGD"
+  DTS:CreatorName="STEPH-PAGD\Stephen - Work"
+  DTS:DTSID="{4487DB9A-EF60-41FC-AEA9-7CFE1F938D69}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{2D913367-CEE8-403C-81B0-A8A9DD37D94C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Europe]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{13319D52-5DC0-448A-B759-E707B68C60BD}"
+      DTS:ObjectName="Europe">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Stephen - Work\Documents\Revature\Project1\Excel Files\Excel List of Europe.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[North America]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8A616688-5985-4264-AE74-AFBD93B9BD06}"
+      DTS:ObjectName="North America">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Stephen - Work\Documents\Revature\Project1\Excel Files\Excel List of North America Countries.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[South America]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8D0FD6F1-EC25-477A-88B2-DD37D7653E09}"
+      DTS:ObjectName="South America">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Stephen - Work\Documents\Revature\Project1\Excel Files\Excel List of South America.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[STEPH-PAGD\STOREAPPDB.DatabaseManagement]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{00E3065E-11EB-4633-80E1-843BFFE8301E}"
+      DTS:ObjectName="STEPH-PAGD\STOREAPPDB.DatabaseManagement">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=STEPH-PAGD\STOREAPPDB;Initial Catalog=DatabaseManagement;Integrated Security=True;Application Name=SSIS-Package-{00E3065E-11EB-4633-80E1-843BFFE8301E}STEPH-PAGD\STOREAPPDB.DatabaseManagement;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Loading Excel Files into DB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E26BB22D-AFC0-40A0-A620-8EA27476B385}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Loading Excel Files into DB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Loading Excel Files into DB\Add ContinentID - 2"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add ContinentID - 2"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Inputs[Derived Column Input].Columns[Population]"
+                      cachedDataType="r8"
+                      cachedName="Population"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Population]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Population]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Population</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID - 2.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Output].Columns[ContinentID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Output].Columns[ContinentID]"
+                      name="ContinentID"
+                      precision="2"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">2.0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">2.0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID - 2.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Add ContinentID - 3"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add ContinentID - 3"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID - 3.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Output].Columns[ContinentID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Output].Columns[ContinentID]"
+                      name="ContinentID"
+                      precision="2"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">3.0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">3.0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID - 3.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add ContinentID and Format Population"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Inputs[Derived Column Input].Columns[Population]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Population"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]},",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Population,",","")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Output].Columns[ContinentID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Output].Columns[ContinentID]"
+                      name="ContinentID"
+                      precision="2"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1.0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1.0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Convert Population to double precision float"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Convert Population to double precision float"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Inputs[Data Conversion Input].Columns[Population]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Population"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Convert Population to double precision float.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Output].Columns[Population_Double]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Output].Columns[Population_Double]"
+                      name="Population_Double"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Convert Population to double precision float.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Europe"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Europe"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'List of European Countries$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading Excel Files into DB\Europe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Europe]"
+                  connectionManagerRefId="Package.ConnectionManagers[Europe]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Population]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[July 1, 2013]"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Population]"
+                      name="Population"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[SNo]"
+                      dataType="r8"
+                      name="SNo" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[July 1, 2013]"
+                      dataType="r8"
+                      name="July 1, 2013" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[% of]"
+                      dataType="r8"
+                      name="% of" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Rank]"
+                      dataType="r8"
+                      name="Rank" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Average]"
+                      dataType="wstr"
+                      length="255"
+                      name="Average" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Average1]"
+                      dataType="r8"
+                      name="Average1" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Estimated]"
+                      dataType="r8"
+                      name="Estimated" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Alternative]"
+                      dataType="r8"
+                      name="Alternative" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].ExternalColumns[Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[July 1, 2013]"
+                      dataType="r8"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[July 1, 2013]"
+                      name="July 1, 2013" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\MS SQL Server"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="MS SQL Server"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Country"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading Excel Files into DB\MS SQL Server.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[STEPH-PAGD\STOREAPPDB.DatabaseManagement]"
+                  connectionManagerRefId="Package.ConnectionManagers[STEPH-PAGD\STOREAPPDB.DatabaseManagement]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].Columns[Population]"
+                      cachedDataType="r8"
+                      cachedName="Population"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[Population]"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]" />
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].Columns[ContinentID]"
+                      cachedDataType="numeric"
+                      cachedName="ContinentID"
+                      cachedPrecision="2"
+                      cachedScale="1"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[ContinentID]"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]" />
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[CountryName]"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[CountryID]"
+                      dataType="i4"
+                      name="CountryID" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[ContinentID]"
+                      dataType="i4"
+                      name="ContinentID" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[Taxes]"
+                      dataType="numeric"
+                      name="Taxes"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input].ExternalColumns[Population]"
+                      dataType="i4"
+                      name="Population" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\MS SQL Server.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\MS SQL Server.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\MS SQL Server.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\MS SQL Server.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\North America"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="North America"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Excel List of North America Cou$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading Excel Files into DB\North America.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[North America]"
+                  connectionManagerRefId="Package.ConnectionManagers[North America]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Population]"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Population]"
+                      name="Population"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[SNo]"
+                      dataType="r8"
+                      name="SNo" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Population]"
+                      dataType="wstr"
+                      length="255"
+                      name="Population" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Rank]"
+                      dataType="r8"
+                      name="Rank" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Average]"
+                      dataType="wstr"
+                      length="255"
+                      name="Average" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Average1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Average1" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Estimated]"
+                      dataType="r8"
+                      name="Estimated" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Alternative]"
+                      dataType="wstr"
+                      length="255"
+                      name="Alternative" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].ExternalColumns[Date]"
+                      dataType="date"
+                      name="Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[Population]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[Population]"
+                      name="Population" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Remove null rows"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Remove null rows"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Remove null]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Remove null"
+                  synchronousInputId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]}) || [LOWER](#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]}) == "total"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(Country) || LOWER(Country) == "total"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\South America"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="South America"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'List of South  American Countri$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading Excel Files into DB\South America.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[South America]"
+                  connectionManagerRefId="Package.ConnectionManagers[South America]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Population]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[July 1, 2013]"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Population]"
+                      name="Population"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[SNo]"
+                      dataType="r8"
+                      name="SNo" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[July 1, 2013]"
+                      dataType="r8"
+                      name="July 1, 2013" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[% of]"
+                      dataType="r8"
+                      name="% of" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Rank]"
+                      dataType="r8"
+                      name="Rank" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Average]"
+                      dataType="wstr"
+                      length="255"
+                      name="Average" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Average1]"
+                      dataType="r8"
+                      name="Average1" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Estimated]"
+                      dataType="r8"
+                      name="Estimated" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Alternative]"
+                      dataType="r8"
+                      name="Alternative" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      dataType="wstr"
+                      length="255"
+                      name="F11" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[July 1, 2013]"
+                      dataType="r8"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[July 1, 2013]"
+                      name="July 1, 2013" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading Excel Files into DB\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 1].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 1].Columns[Population]"
+                      cachedDataType="r8"
+                      cachedName="Population"
+                      lineageId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output].Columns[Population]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 1].Columns[ContinentID]"
+                      cachedDataType="numeric"
+                      cachedName="ContinentID"
+                      cachedPrecision="2"
+                      cachedScale="1"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Output].Columns[ContinentID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 2].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 2].Columns[ContinentID]"
+                      cachedDataType="numeric"
+                      cachedName="ContinentID"
+                      cachedPrecision="2"
+                      cachedScale="1"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Output].Columns[ContinentID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 2].Columns[Population_Double]"
+                      cachedDataType="r8"
+                      cachedName="Population_Double"
+                      lineageId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Output].Columns[Population_Double]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 3].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 3].Columns[Population]"
+                      cachedDataType="r8"
+                      cachedName="Population"
+                      lineageId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output].Columns[Population]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 3].Columns[ContinentID]"
+                      cachedDataType="numeric"
+                      cachedName="ContinentID"
+                      cachedPrecision="2"
+                      cachedScale="1"
+                      lineageId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Output].Columns[ContinentID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]"
+                      dataType="r8"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[Population]"
+                      name="Population" />
+                    <outputColumn
+                      refId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]"
+                      dataType="numeric"
+                      lineageId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1].Columns[ContinentID]"
+                      name="ContinentID"
+                      precision="2"
+                      scale="1" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Conditional Split Default Output]"
+              endId="Package\Loading Excel Files into DB\MS SQL Server.Inputs[ADO NET Destination Input]"
+              name="Conditional Split Default Output"
+              startId="Package\Loading Excel Files into DB\Remove null rows.Outputs[Conditional Split Default Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Data Conversion Output]"
+              endId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 2]"
+              name="Data Conversion Output"
+              startId="Package\Loading Excel Files into DB\Convert Population to double precision float.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Derived Column Output]"
+              endId="Package\Loading Excel Files into DB\Convert Population to double precision float.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Derived Column Output1]"
+              endId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Loading Excel Files into DB\Add ContinentID - 2.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Derived Column Output2]"
+              endId="Package\Loading Excel Files into DB\Union All.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\Loading Excel Files into DB\Add ContinentID - 3.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Excel Source Output]"
+              endId="Package\Loading Excel Files into DB\Add ContinentID - 2.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Loading Excel Files into DB\South America.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Excel Source Output1]"
+              endId="Package\Loading Excel Files into DB\Add ContinentID - 3.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Loading Excel Files into DB\Europe.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Excel Source Output2]"
+              endId="Package\Loading Excel Files into DB\Add ContinentID and Format Population.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Loading Excel Files into DB\North America.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Loading Excel Files into DB.Paths[Union All Output 1]"
+              endId="Package\Loading Excel Files into DB\Remove null rows.Inputs[Conditional Split Input]"
+              name="Union All Output 1"
+              startId="Package\Loading Excel Files into DB\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Loading Excel Files into DB"
+          TopLeft="49,65" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Loading Excel Files into DB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Loading Excel Files into DB\Add ContinentID - 3"
+          TopLeft="703,134" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Loading Excel Files into DB\Remove null rows"
+          TopLeft="436,382" />
+        <NodeLayout
+          Size="112,42"
+          Id="Package\Loading Excel Files into DB\Europe"
+          TopLeft="730,37" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Loading Excel Files into DB\South America"
+          TopLeft="440,38" />
+        <NodeLayout
+          Size="267,42"
+          Id="Package\Loading Excel Files into DB\Add ContinentID and Format Population"
+          TopLeft="59,138" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Loading Excel Files into DB\North America"
+          TopLeft="125,41" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Loading Excel Files into DB\Add ContinentID - 2"
+          TopLeft="427,138" />
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Loading Excel Files into DB\Convert Population to double precision float"
+          TopLeft="49,205" />
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Excel Source Output]"
+          TopLeft="513.5,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Derived Column Output]"
+          TopLeft="192,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Excel Source Output2]"
+          TopLeft="195.25,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Excel Source Output1]"
+          TopLeft="787.75,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Loading Excel Files into DB\Union All"
+          TopLeft="453,294" />
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Derived Column Output1]"
+          TopLeft="513.5,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,114"
+              Start="0,0"
+              End="0,106.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Data Conversion Output]"
+          TopLeft="191.5,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="303.166666666667,47"
+              Start="0,0"
+              End="303.166666666667,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8319738988581" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.8319738988581"
+                    Point2="0,27.8319738988581"
+                    Point3="4,27.8319738988581" />
+                  <mssgle:LineSegment
+                    End="299.166666666667,27.8319738988581" />
+                  <mssgle:CubicBezierSegment
+                    Point1="299.166666666667,27.8319738988581"
+                    Point2="303.166666666667,27.8319738988581"
+                    Point3="303.166666666667,31.8319738988581" />
+                  <mssgle:LineSegment
+                    End="303.166666666667,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Derived Column Output2]"
+          TopLeft="789.5,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-247.75,118"
+              Start="0,0"
+              End="-247.75,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.9703504043127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,94.9703504043127"
+                    Point2="0,98.9703504043127"
+                    Point3="-4,98.9703504043127" />
+                  <mssgle:LineSegment
+                    End="-243.75,98.9703504043127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-243.75,98.9703504043127"
+                    Point2="-247.75,98.9703504043127"
+                    Point3="-247.75,102.970350404313" />
+                  <mssgle:LineSegment
+                    End="-247.75,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Union All Output 1]"
+          TopLeft="515.5,336">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Loading Excel Files into DB\MS SQL Server"
+          TopLeft="440,475" />
+        <EdgeLayout
+          Id="Package\Loading Excel Files into DB.Paths[Conditional Split Default Output]"
+          TopLeft="516,424">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-70.61390625,15.9208984375,141.2278125,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading Excel Files into DB\Europe">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading Excel Files into DB\South America">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading Excel Files into DB\North America">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading Excel Files into DB\MS SQL Server">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
