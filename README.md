@@ -13,6 +13,7 @@ Created a database structure using MS SQL Server with SQL Server Agent to collab
 
 List of features
 * Automatically loading data from multiple sources using SSIS
+   * Used randomize algorithm to determine the amount of stores,channel partners, zones, sudistributor, and distributors in each country depending on population
 * Database will fill out tables with information based on country's properties such as its population
 * Normalized database to reduce redundancy
 * Multiple views created for statistical analysis
